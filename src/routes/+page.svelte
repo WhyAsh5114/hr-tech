@@ -48,7 +48,7 @@
             alt={`${item.name} profile picture`}
             class="mb-auto h-48 w-48"
           />
-          <Card.Title class="ml-2 mb-2 capitalize">
+          <Card.Title class="ml-2 my-2 capitalize">
             {item.name.toLowerCase()}
           </Card.Title>
           <Card.Description class="ml-2 mb-4">

@@ -66,7 +66,7 @@ export const load = async () => {
       const txt = (await pdf(dataBuffer)).text;
 
       const lines = txt.split("\n");
-      const name = lines.find((line) => line.trim() !== "") ?? "";
+      const name = lines.find((line) => line.trim() !== "")?.trim() ?? "";
       const designation =
         lines.find((line) => line.trim() !== "" && line !== name) ?? "";
 
