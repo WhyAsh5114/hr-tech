@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
   import { page } from "$app/stores";
   import { Line } from "svelte-chartjs";
   import {
@@ -88,7 +88,10 @@
     </Avatar>
     <CardHeader class="flex-col">
       <CardTitle>{$page.params.employeeName}</CardTitle>
-      <CardDescription>{data.employee?.designation}</CardDescription>
+      <CardDescription
+        >{data.employee?.designation} ({data.employee
+          ?.username})</CardDescription
+      >
     </CardHeader>
   </Card>
 </div>
@@ -100,7 +103,7 @@
     />
   </div>
   <div class="grid grid-cols-2 gap-2">
-    <Card class="w-48 h-48">
+    <Card class="w-48 h-48 shadow-md">
       <CardHeader>
         <CardTitle>Issues Solved</CardTitle>
       </CardHeader>
@@ -112,8 +115,15 @@
           >
         </p>
       </CardContent>
+      <CardFooter>
+        <Progress
+          value={data.timesTakenToCloseIssue.length}
+          max={data.openIssues + data.timesTakenToCloseIssue.length}
+          class="bg-muted-foreground"
+        />
+      </CardFooter>
     </Card>
-    <Card class="w-48 h-48">
+    <Card class="w-48 h-48 shadow-md">
       <CardHeader>
         <CardTitle>Total Commits</CardTitle>
       </CardHeader>
@@ -121,7 +131,7 @@
         <p class="text-5xl font-bold">{data.totalCommits}</p>
       </CardContent>
     </Card>
-    <Card class="w-48 h-48">
+    <Card class="w-48 h-48 shadow-md">
       <CardHeader>
         <CardTitle>Avg time spent</CardTitle>
       </CardHeader>
@@ -133,7 +143,7 @@
         </p>
       </CardContent>
     </Card>
-    <Card class="w-48 h-48">
+    <Card class="w-48 h-48 shadow-md">
       <CardHeader>
         <CardTitle>Take action</CardTitle>
       </CardHeader>

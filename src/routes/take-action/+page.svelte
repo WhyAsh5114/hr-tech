@@ -105,7 +105,7 @@
 </div>
 
 <span class="text-sm font-semibold ml-2">Email</span>
-<Textarea class="h-64" bind:value={answer} />
+<Textarea placeholder="Write your email here" class="h-96" bind:value={answer} />
 
 <div class="flex mt-2 justify-between">
   <Button variant="secondary" disabled={generating} on:click={generateResponse}>
