@@ -110,7 +110,7 @@
       <CardContent>
         <p class="text-5xl font-bold">
           {data.timesTakenToCloseIssue.length}<span
-            class="text-3xl text-muted-foreground font-normal"
+            class="text-3xl text-muted-foreground font-bold"
             >/{data.openIssues + data.timesTakenToCloseIssue.length}</span
           >
         </p>
