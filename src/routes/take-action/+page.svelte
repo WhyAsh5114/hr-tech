@@ -3,12 +3,16 @@
   import * as Select from "$lib/components/ui/select/index.js";
   import Textarea from "$lib/components/ui/textarea/textarea.svelte";
   import { Button } from "$lib/components/ui/button";
+  import Reload from "svelte-radix/Reload.svelte";
+  import LlamaAI from "llamaai";
   export let data;
 
   const actions = [
     { value: "offer", label: "Offer" },
     { value: "rejection", label: "Rejection" },
     { value: "layoff", label: "Layoff" },
+    { value: "increment", label: "Increment" },
+    { value: "decrement", label: "Decrement" },
   ];
   let selectedAction = actions.find(
     (action) => action.value === $page.url.searchParams.get("action")
@@ -29,24 +33,30 @@
       }
     : undefined;
 
+  let answer = "";
+  let generating = false;
   async function generateResponse() {
     const apiToken =
       "LL-dlIgQVFTLtpQ66uuFfPlW2DMMtbq317E8KmWvS3l6CQv7KB6zmBaeuVKPBfWlyrC";
     const llamaAPI = new LlamaAI(apiToken);
 
+    let content = `generate a simple template ${selectedAction?.value} letter`;
+    if (selectedAction?.value !== "layoff") {
+      content += `for employee ${selectedEmployee?.label}`;
+    }
     const apiRequestJson = {
       messages: [
         {
           role: "user",
-          content:
-            "generate a notice period for employee name 'John Doe', 4 weeks",
+          content,
         },
       ],
       stream: false,
     };
-
+    generating = true;
     const messages = await llamaAPI.run(apiRequestJson);
     answer = messages.choices[0].message.content;
+    generating = false;
   }
 </script>
 
@@ -95,9 +105,14 @@
 </div>
 
 <span class="text-sm font-semibold ml-2">Email</span>
-<Textarea class="h-64" />
+<Textarea class="h-64" bind:value={answer} />
 
 <div class="flex mt-2 justify-between">
-  <Button variant="secondary">Generate email</Button>
+  <Button variant="secondary" disabled={generating} on:click={generateResponse}>
+    {#if generating}
+      <Reload class="mr-2 h-4 w-4 animate-spin" />
+    {/if}
+    Generate email
+  </Button>
   <Button>Send email</Button>
 </div>
