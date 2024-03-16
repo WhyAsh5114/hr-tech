@@ -1411,40 +1411,11 @@ const commitData = [
   },
 ];
 
-const employeeData = [
-  {
-    name: "John Doe",
-    username: "samarthsb4real",
-    designation: "Senior Software Developer",
-  },
-  {
-    name: "Albert King",
-    username: "WhyAsh5114",
-    designation: "Cloud Architect",
-  },
-  {
-    name: "Jessica Jones",
-    username: "sundaram123krishnan",
-    designation: "System Administrator",
-  },
-  {
-    name: "Jashan Elizabeth",
-    username: "GodBoii",
-    designation: "Junior Developer",
-  },
-  {
-    name: "Shayla Nico",
-    username: "lowercasexyz",
-    designation: "Senior Software Developer",
-  },
-  {
-    name: "Ray Liotta",
-    username: "Kushhhh-sh",
-    designation: "Database Administrator",
-  },
-];
-
-export const load = async () => {
+export const load = async ({ parent, params }) => {
+  const { employeeData } = await parent();
+  const employee = employeeData.find((employee) => {
+    return employee.name === params.employeeName;
+  });
   const octokit = new Octokit({ auth: process.env.GITHUB_TOKEN });
 
   let timesTakenToCloseIssue: number[] = [];
@@ -1490,5 +1461,5 @@ export const load = async () => {
     }
   });
 
-  return { totalCommits, timesTakenToCloseIssue, employeeData };
+  return { totalCommits, timesTakenToCloseIssue, openIssues, employee };
 };
