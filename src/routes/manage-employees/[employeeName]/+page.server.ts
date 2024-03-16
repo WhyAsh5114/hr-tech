@@ -1420,7 +1420,7 @@ export const load = async ({ parent, params }) => {
 
   let timesTakenToCloseIssue: number[] = [];
   let openIssues = 0;
-
+  
   //const { data } = await octokit.request(
   //  "GET /repos/WhyAsh5114/MyFit/commits",
   //  { type: "public" }
