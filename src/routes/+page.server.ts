@@ -5,7 +5,7 @@ type EmployeeData = {
   name: string;
   skills: string[];
   experience: number;
-  image: string;
+  image: string | null;
   designation: string;
 };
 
@@ -70,11 +70,18 @@ export const load = async () => {
       const designation =
         lines.find((line) => line.trim() !== "" && line !== name) ?? "";
 
+      let image: string | null = `${name}.jpeg`;
+      if (!fs.readdirSync("./static/profilePictures").includes(image)) {
+        image = null;
+      } else {
+        image = "/profilePictures/" + image;
+      }
+
       return {
         name,
         skills: skills.filter((skill) => txt.includes(skill)),
         experience: calculateTotalYears(txt),
-        image: `/profilePictures/${txt.split("\n")[2].trimEnd()}.jpeg`,
+        image,
         designation,
       };
     })
