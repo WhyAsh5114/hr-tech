@@ -15,6 +15,14 @@
     AvatarImage,
   } from "$lib/components/ui/avatar";
   import { Button } from "$lib/components/ui/button";
+  import {
+    DropdownMenu,
+    DropdownMenuContent,
+    DropdownMenuItem,
+    DropdownMenuLabel,
+    DropdownMenuSeparator,
+    DropdownMenuTrigger,
+  } from "$lib/components/ui/dropdown-menu";
 
   export let data;
 
@@ -84,12 +92,12 @@
     </CardHeader>
   </Card>
 </div>
-<div class="flex gap-2 justify-evenly">
+<div class="flex gap-2 justify-evenly items-center">
   <div class="grid grid-cols-2 w-2/3">
     <Line
-    data={chartData}
-    options={{ scales: { x: { grid: { display: false } } } }}
-  />
+      data={chartData}
+      options={{ scales: { x: { grid: { display: false } } } }}
+    />
   </div>
   <div class="grid grid-cols-2 gap-2">
     <Card class="w-48 h-48">
@@ -115,7 +123,7 @@
     </Card>
     <Card class="w-48 h-48">
       <CardHeader>
-        <CardTitle>Avg Time Spent</CardTitle>
+        <CardTitle>Avg time spent</CardTitle>
       </CardHeader>
       <CardContent>
         <p class="text-3xl font-bold">
@@ -127,11 +135,37 @@
     </Card>
     <Card class="w-48 h-48">
       <CardHeader>
-        <CardTitle>Card Title</CardTitle>
+        <CardTitle>Take action</CardTitle>
       </CardHeader>
       <CardContent>
         <p>Card Content</p>
       </CardContent>
     </Card>
+    <DropdownMenu>
+      <DropdownMenuTrigger asChild let:builder>
+        <Button builders={[builder]} class="col-span-2 mt-2">Take Action</Button
+        >
+      </DropdownMenuTrigger>
+      <DropdownMenuContent side="right" align="end">
+        <DropdownMenuItem
+          ><a
+            href="/take-action?action=increment&to={data.employee
+              ?.email}&name={data.employee?.name}">Increment</a
+          >
+        </DropdownMenuItem>
+        <DropdownMenuItem
+          ><a
+            href="/take-action?action=decrement&to={data.employee
+              ?.email}&name={data.employee?.name}">Decrement</a
+          >
+        </DropdownMenuItem>
+        <DropdownMenuItem
+          ><a
+            href="/take-action?action=layoff&to={data.employee
+              ?.email}&name={data.employee?.name}">Layoff</a
+          ></DropdownMenuItem
+        >
+      </DropdownMenuContent>
+    </DropdownMenu>
   </div>
 </div>
