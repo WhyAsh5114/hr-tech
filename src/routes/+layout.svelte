@@ -5,7 +5,9 @@
 </script>
 
 <ModeWatcher />
-<h1 class="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl mb-4">
+<h1
+  class="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl mb-12"
+>
   Welcome, HR
 </h1>
 <Menubar.Root class="mb-6">
