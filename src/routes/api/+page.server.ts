@@ -1,9 +1,18 @@
-import { Octokit, App } from "octokit";
+import { Octokit, App } from "@octokit/core";
 
 export const load = async () => {
-  const octokit = new Octokit({ auth: `personal-access-token123` });
+  const octokit = new Octokit({ auth: process.env.GITHUB_TOKEN });
+  
+  const { data } = await octokit.request('GET /repos/WhyAsh5114/MyFit/commits', { type: 'public' })
+  
+  let total = 0;
+  
+  data.forEach((element) => {
+    if(element.committer.login==="WhyAsh5114") {
+      total += 1;
+    }
+  })
 
-const {
-  data: { login },
-} = await octokit.rest.users.getAuthenticated();
+  console.log(total);
+  
 }
