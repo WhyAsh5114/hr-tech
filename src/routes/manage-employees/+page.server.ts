@@ -1411,6 +1411,39 @@ const commitData = [
   },
 ];
 
+const employeeData = [
+  {
+    name: "John Doe",
+    username: "samarthsb4real",
+    designation: "Senior Software Developer",
+  },
+  {
+    name: "Albert King",
+    username: "WhyAsh5114",
+    designation: "Cloud Architect",
+  },
+  {
+    name: "Jessica Jones",
+    username: "sundaram123krishnan",
+    designation: "System Administrator",
+  },
+  {
+    name: "Jashan Elizabeth",
+    username: "GodBoii",
+    designation: "Junior Developer",
+  },
+  {
+    name: "Shayla Nico",
+    username: "lowercasexyz",
+    designation: "Senior Software Developer",
+  },
+  {
+    name: "Ray Liotta",
+    username: "Kushhhh-sh",
+    designation: "Database Administrator",
+  },
+];
+
 export const load = async () => {
   const octokit = new Octokit({ auth: process.env.GITHUB_TOKEN });
 
@@ -1457,5 +1490,5 @@ export const load = async () => {
     }
   });
 
-  return { totalCommits, timesTakenToCloseIssue };
+  return { totalCommits, timesTakenToCloseIssue, employeeData };
 };
