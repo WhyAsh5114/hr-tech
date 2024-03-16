@@ -8,6 +8,7 @@ type EmployeeData = {
   image: string | null;
   designation: string;
   resume: string;
+  email: string;
 };
 
 const skills = [
@@ -59,6 +60,12 @@ function calculateTotalYears(text: string): number {
   return totalYears;
 }
 
+function extractEmails(resumeText: string): string[] {
+  const emailRegex = /[\w\.-]+@[\w\.-]+\.\w+/g;
+  const emails = resumeText.match(emailRegex);
+  return emails ? emails : [];
+}
+
 export const load = async () => {
   let resumes = fs.readdirSync("./static/resumes");
   const employeeData: EmployeeData[] = await Promise.all(
@@ -85,6 +92,7 @@ export const load = async () => {
         image,
         designation,
         resume,
+        email: extractEmails(txt)[0],
       };
     })
   );

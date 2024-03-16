@@ -48,12 +48,12 @@
         fill: true,
         lineTension: 0.3,
         backgroundColor: "rgba(225, 204,230, .3)",
-        borderColor: "rgb(0, 0, 255)",
+        borderColor: "#45b6fe",
         borderCapStyle: "butt",
         borderDash: [],
         borderDashOffset: 0.0,
         borderJoinStyle: "miter",
-        pointBorderColor: "rgb(205, 130,1 58)",
+        pointBorderColor: "rgb(124, 124, 124)",
         pointBackgroundColor: "rgb(255, 255, 255)",
         pointBorderWidth: 7.5,
         pointHoverRadius: 5,
@@ -83,5 +83,8 @@
       </CardHeader>
     </Card>
   </div>
-  <Line data={chartData} />
+  <Line
+    data={chartData}
+    options={{ scales: { x: { grid: { display: false } } } }}
+  />
 </div>

@@ -3,30 +3,7 @@
   import { Badge } from "$lib/components/ui/badge/index.js";
   import * as Card from "$lib/components/ui/card";
   import * as DropdownMenu from "$lib/components/ui/dropdown-menu";
-  import LlamaAI from "llamaai";
   export let data;
-
-  let answer = "";
-
-  async function generateResponse() {
-    const apiToken =
-      "LL-dlIgQVFTLtpQ66uuFfPlW2DMMtbq317E8KmWvS3l6CQv7KB6zmBaeuVKPBfWlyrC";
-    const llamaAPI = new LlamaAI(apiToken);
-
-    const apiRequestJson = {
-      messages: [
-        {
-          role: "user",
-          content:
-            "generate a notice period for employee name 'John Doe', 4 weeks",
-        },
-      ],
-      stream: false,
-    };
-
-    const messages = await llamaAPI.run(apiRequestJson);
-    answer = messages.choices[0].message.content;
-  }
 </script>
 
 <h2
@@ -82,13 +59,20 @@
             <DropdownMenu.Content align="start">
               <DropdownMenu.Group>
                 <DropdownMenu.Item
-                  ><a href="/resumes/{item.resume}">View resume</a></DropdownMenu.Item
+                  ><a href="/resumes/{item.resume}">View resume</a
+                  ></DropdownMenu.Item
                 >
                 <DropdownMenu.Item>
-                  <a href="/take-action?action=offer">Send offer</a>
+                  <a
+                    href="/take-action?action=offer&to={item.email}&name={item.name}"
+                    >Send offer</a
+                  >
                 </DropdownMenu.Item>
                 <DropdownMenu.Item class="text-red-500">
-                  Send rejection
+                  <a
+                    href="/take-action?action=rejection&to={item.email}&name={item.name}"
+                    >Send rejection</a
+                  >
                 </DropdownMenu.Item>
               </DropdownMenu.Group>
             </DropdownMenu.Content>
