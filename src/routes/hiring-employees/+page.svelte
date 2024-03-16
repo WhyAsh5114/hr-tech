@@ -16,9 +16,15 @@
     <Card.Root class="shadow-md">
       <div class="grid grid-cols-3">
         <div class="border flex flex-col">
-          <img src={item.image} alt={`${item.name} profile picture`} />
-          <Card.Title class="ml-2 mt-auto mb-2">{item.name}</Card.Title>
-          <Card.Description class="ml-2 mb-4">{item.designation}</Card.Description>
+          <img
+            src={item.image}
+            alt={`${item.name} profile picture`}
+            class="mb-auto"
+          />
+          <Card.Title class="ml-2 mb-2">{item.name}</Card.Title>
+          <Card.Description class="ml-2 mb-4">
+            {item.designation}
+          </Card.Description>
         </div>
         <div class="flex flex-col col-span-2">
           <Card.Header>
