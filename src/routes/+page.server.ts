@@ -64,12 +64,19 @@ export const load = async () => {
     resumes.map(async (resume) => {
       const dataBuffer = fs.readFileSync(`./static/resumes/${resume}`);
       const txt = (await pdf(dataBuffer)).text;
+
+      const lines = txt.split("\n");
+      const name = lines.find((line) => line.trim() !== "");
+      const designation = lines.find(
+        (line) => line.trim() !== "" && line !== name
+      );
+
       return {
-        name: txt.split("\n")[2],
+        name,
         skills: skills.filter((skill) => txt.includes(skill)),
         experience: calculateTotalYears(txt),
         image: `/profilePictures/${txt.split("\n")[2].trimEnd()}.jpeg`,
-        designation: txt.split("\n")[3],
+        designation,
       };
     })
   );
