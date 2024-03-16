@@ -30,12 +30,14 @@
     "@octokit/core": "^6.0.1",
     "axios": "^1.6.8",
     "bits-ui": "^0.19.7",
+    "chart.js": "^4.4.2",
     "clsx": "^2.1.0",
     "llamaai": "^1.0.4",
     "lucide-svelte": "^0.358.0",
     "mode-watcher": "^0.3.0",
     "octokit": "^3.1.2",
     "pdf-parse": "^1.1.1",
+    "svelte-chartjs": "^3.1.5",
     "tailwind-merge": "^2.2.1",
     "tailwind-variants": "^0.2.1"
   }
