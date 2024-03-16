@@ -3,6 +3,33 @@
   import { Badge } from "$lib/components/ui/badge/index.js";
   import * as Card from "$lib/components/ui/card";
   export let data;
+  import LlamaAI from "llamaai";
+
+  let answer = "";
+
+  async function generateResponse() {
+    const apiToken =
+      "LL-dlIgQVFTLtpQ66uuFfPlW2DMMtbq317E8KmWvS3l6CQv7KB6zmBaeuVKPBfWlyrC";
+    const llamaAPI = new LlamaAI(apiToken);
+
+    const apiRequestJson = {
+      messages: [
+        {
+          role: "user",
+          content:
+            "generate a notice period for employee name 'John Doe', 4 weeks",
+        },
+      ],
+      stream: false,
+    };
+
+    const messages = await llamaAPI.run(apiRequestJson);
+    answer = messages.choices[0].message.content;
+    console.log(answer);
+    console.log(messages);
+  }
+
+  generateResponse();
 </script>
 
 <h2
