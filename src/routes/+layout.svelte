@@ -14,14 +14,8 @@
   </Menubar.Menu>
   <Menubar.Menu>
     <Menubar.Trigger class="grow justify-center">
-      Manage
+      <a href="/manage-employees">Manage</a>
     </Menubar.Trigger>
-    <Menubar.Content>
-      <Menubar.Item>Offer letters</Menubar.Item>
-      <Menubar.Item>New applicants</Menubar.Item>
-      <Menubar.Item>Lay-offs</Menubar.Item>
-      <Menubar.Item>Notice period</Menubar.Item>
-    </Menubar.Content>
   </Menubar.Menu>
   <Menubar.Menu>
     <Menubar.Trigger class="grow justify-center">
