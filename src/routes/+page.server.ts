@@ -7,6 +7,7 @@ type EmployeeData = {
   experience: number;
   image: string | null;
   designation: string;
+  resume: string;
 };
 
 const skills = [
@@ -68,7 +69,7 @@ export const load = async () => {
       const lines = txt.split("\n");
       const name = lines.find((line) => line.trim() !== "")?.trim() ?? "";
       const designation =
-        lines.find((line) => line.trim() !== "" && line !== name) ?? "";
+        lines.find((line) => line.trim() !== "" && line.trim() !== name) ?? "";
 
       let image: string | null = `${name}.jpeg`;
       if (!fs.readdirSync("./static/profilePictures").includes(image)) {
@@ -83,6 +84,7 @@ export const load = async () => {
         experience: calculateTotalYears(txt),
         image,
         designation,
+        resume,
       };
     })
   );

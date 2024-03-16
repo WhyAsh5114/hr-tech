@@ -2,8 +2,9 @@
   import { Button } from "$lib/components/ui/button";
   import { Badge } from "$lib/components/ui/badge/index.js";
   import * as Card from "$lib/components/ui/card";
-  export let data;
+  import * as DropdownMenu from "$lib/components/ui/dropdown-menu";
   import LlamaAI from "llamaai";
+  export let data;
 
   let answer = "";
 
@@ -25,11 +26,7 @@
 
     const messages = await llamaAPI.run(apiRequestJson);
     answer = messages.choices[0].message.content;
-    console.log(answer);
-    console.log(messages);
   }
-
-  generateResponse();
 </script>
 
 <h2
@@ -72,7 +69,30 @@
               {item.experience.toFixed(1)} years
             </Card.Description>
           </div>
-          <Button class="ml-auto">View</Button>
+          <DropdownMenu.Root>
+            <DropdownMenu.Trigger asChild let:builder>
+              <Button
+                variant="secondary"
+                builders={[builder]}
+                class="w-fit ml-auto"
+              >
+                View
+              </Button>
+            </DropdownMenu.Trigger>
+            <DropdownMenu.Content align="start">
+              <DropdownMenu.Group>
+                <DropdownMenu.Item
+                  ><a href="/resumes/{item.resume}">View resume</a></DropdownMenu.Item
+                >
+                <DropdownMenu.Item>
+                  <a href="/take-action?action=offer">Send offer</a>
+                </DropdownMenu.Item>
+                <DropdownMenu.Item class="text-red-500">
+                  Send rejection
+                </DropdownMenu.Item>
+              </DropdownMenu.Group>
+            </DropdownMenu.Content>
+          </DropdownMenu.Root>
         </Card.Header>
       </div>
     </Card.Root>
