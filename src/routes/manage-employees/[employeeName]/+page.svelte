@@ -14,6 +14,7 @@
     AvatarFallback,
     AvatarImage,
   } from "$lib/components/ui/avatar";
+  import { Button } from "$lib/components/ui/button";
 
   export let data;
 
@@ -27,6 +28,7 @@
     PointElement,
     CategoryScale,
   } from "chart.js";
+  import { Progress } from "$lib/components/ui/progress";
 
   ChartJS.register(
     Title,
@@ -69,22 +71,67 @@
 </script>
 
 <div>
-  <div>
-    <Card
-      class="flex items-center justify-start px-6 py-2 border-t-0 border-x-0 mb-6"
-    >
-      <Avatar class="h-16 w-16">
-        <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
-        <AvatarFallback>CN</AvatarFallback>
-      </Avatar>
-      <CardHeader class="flex-col">
-        <CardTitle>{$page.params.employeeName}</CardTitle>
-        <CardDescription>{data.employee?.designation}</CardDescription>
-      </CardHeader>
-    </Card>
-  </div>
-  <Line
+  <Card
+    class="flex items-center justify-start px-6 py-2 border-t-0 border-x-0 mb-6"
+  >
+    <Avatar class="h-16 w-16">
+      <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
+      <AvatarFallback>CN</AvatarFallback>
+    </Avatar>
+    <CardHeader class="flex-col">
+      <CardTitle>{$page.params.employeeName}</CardTitle>
+      <CardDescription>{data.employee?.designation}</CardDescription>
+    </CardHeader>
+  </Card>
+</div>
+<div class="flex gap-2 justify-evenly">
+  <div class="grid grid-cols-2 w-2/3">
+    <Line
     data={chartData}
     options={{ scales: { x: { grid: { display: false } } } }}
   />
+  </div>
+  <div class="grid grid-cols-2 gap-2">
+    <Card class="w-48 h-48">
+      <CardHeader>
+        <CardTitle>Issues Solved</CardTitle>
+      </CardHeader>
+      <CardContent>
+        <p class="text-5xl font-bold">
+          {data.timesTakenToCloseIssue.length}<span
+            class="text-3xl text-muted-foreground font-normal"
+            >/{data.openIssues + data.timesTakenToCloseIssue.length}</span
+          >
+        </p>
+      </CardContent>
+    </Card>
+    <Card class="w-48 h-48">
+      <CardHeader>
+        <CardTitle>Total Commits</CardTitle>
+      </CardHeader>
+      <CardContent>
+        <p class="text-5xl font-bold">{data.totalCommits}</p>
+      </CardContent>
+    </Card>
+    <Card class="w-48 h-48">
+      <CardHeader>
+        <CardTitle>Avg Time Spent</CardTitle>
+      </CardHeader>
+      <CardContent>
+        <p class="text-3xl font-bold">
+          {Math.floor(Math.random() * (60 - 40 + 1) + 40)}
+          <br />
+          hrs<span class="text-2xl text-muted-foreground">/week</span>
+        </p>
+      </CardContent>
+    </Card>
+    <Card class="w-48 h-48">
+      <CardHeader>
+        <CardTitle>Card Title</CardTitle>
+      </CardHeader>
+      <CardContent>
+        <p>Card Content</p>
+      </CardContent>
+    </Card>
+  </div>
 </div>
