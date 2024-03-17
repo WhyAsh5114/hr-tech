@@ -25,6 +25,7 @@ export const employeeData = [
       taxes: "25000",
       trainingCost: "25000",
       additionalCertificationCost: "15000",
+      inHand: 200000,
     },
   },
   {
@@ -39,6 +40,7 @@ export const employeeData = [
       taxes: 18000,
       trainingCost: 15000,
       additionalCertificationCost: 8000,
+      inHand: 85000,
     },
   },
   {
@@ -53,6 +55,7 @@ export const employeeData = [
       taxes: 12000,
       trainingCost: 10000,
       additionalCertificationCost: 5000,
+      inHand: 60000,
     },
   },
   {
@@ -67,6 +70,7 @@ export const employeeData = [
       taxes: 22000,
       trainingCost: 20000,
       additionalCertificationCost: 12000,
+      inHand: 120000,
     },
   },
   {
@@ -81,6 +85,7 @@ export const employeeData = [
       taxes: 16000,
       trainingCost: 15000,
       additionalCertificationCost: 7000,
+      inHand: 55000,
     },
   },
 ];
