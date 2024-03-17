@@ -1,6 +1,11 @@
 <script lang="ts">
   import { page } from "$app/stores";
-  import { Line } from "svelte-chartjs";
+  import {
+    Avatar,
+    AvatarFallback,
+    AvatarImage,
+  } from "$lib/components/ui/avatar";
+  import { Button } from "$lib/components/ui/button";
   import {
     Card,
     CardContent,
@@ -10,33 +15,28 @@
     CardTitle,
   } from "$lib/components/ui/card";
   import {
-    Avatar,
-    AvatarFallback,
-    AvatarImage,
-  } from "$lib/components/ui/avatar";
-  import { Button } from "$lib/components/ui/button";
-  import {
     DropdownMenu,
     DropdownMenuContent,
     DropdownMenuItem,
-    DropdownMenuLabel,
-    DropdownMenuSeparator,
     DropdownMenuTrigger,
   } from "$lib/components/ui/dropdown-menu";
+  import { Line } from "svelte-chartjs";
 
   export let data;
 
+  import { Progress } from "$lib/components/ui/progress";
   import {
+    ArcElement,
+    CategoryScale,
     Chart as ChartJS,
-    Title,
-    Tooltip,
     Legend,
     LineElement,
     LinearScale,
     PointElement,
-    CategoryScale,
+    Title,
+    Tooltip,
   } from "chart.js";
-  import { Progress } from "$lib/components/ui/progress";
+  import { Pie } from "svelte-chartjs";
 
   ChartJS.register(
     Title,
@@ -45,7 +45,8 @@
     LineElement,
     LinearScale,
     PointElement,
-    CategoryScale
+    CategoryScale,
+    ArcElement
   );
 
   const chartData = {
@@ -73,6 +74,38 @@
         pointRadius: 1,
         pointHitRadius: 10,
         data: data.timesTakenToCloseIssue,
+      },
+    ],
+  };
+
+  let cost = [];
+
+  cost.push(data.employee?.budget.CTC);
+  cost.push(data.employee?.budget.taxes);
+  cost.push(data.employee?.budget.trainingCost);
+  cost.push(data.employee?.budget.additionalCertificationCost);
+
+  const pieData = {
+    labels: ["CTC", "Taxes", "Training Cost", "Additional Certification Cost"],
+    datasets: [
+      {
+        data: cost,
+        backgroundColor: [
+          "#F7464A",
+          "#46BFBD",
+          "#FDB45C",
+          "#949FB1",
+          "#4D5360",
+          "#AC64AD",
+        ],
+        hoverBackgroundColor: [
+          "#FF5A5E",
+          "#5AD3D1",
+          "#FFC870",
+          "#A8B3C5",
+          "#616774",
+          "#DA92DB",
+        ],
       },
     ],
   };
@@ -194,5 +227,45 @@
         >
       </DropdownMenuContent>
     </DropdownMenu>
+  </div>
+</div>
+
+<h1 class="text-4xl font-bold mt-24 mb-4">Expenses</h1>
+
+<div class="flex justify-between gap-10">
+  <div class="flex flex-col basis-2/3 gap-2">
+    <Card class="text-2xl grow">
+      <CardContent>
+        <p class="m-4">
+          <span class="font-bold">CTC:</span>
+          {data.employee?.budget.CTC}
+        </p>
+        <p class="m-4">
+          <span class="font-bold">Taxes:</span>
+          {data.employee?.budget.taxes}
+        </p>
+        <p class="m-4">
+          <span class="font-bold">Training Cost: </span>{data.employee?.budget
+            .trainingCost}
+        </p>
+        <p class="m-4">
+          <span class="font-bold">Additional Cerfication Cost:</span>
+          {data.employee?.budget.additionalCertificationCost}
+        </p>
+      </CardContent>
+    </Card>
+    <Card class="text-2xl">
+      <CardContent>
+        <p class="m-4">
+          <span class="font-bold">CTC:</span>
+          {data.employee?.budget.CTC}
+        </p>
+      </CardContent>
+    </Card>
+  </div>
+  <div class="w-96">
+    <Card>
+      <Pie data={pieData} />
+    </Card>
   </div>
 </div>
