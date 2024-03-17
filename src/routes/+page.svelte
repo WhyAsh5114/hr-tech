@@ -3,7 +3,34 @@
   import { Badge } from "$lib/components/ui/badge/index.js";
   import * as Card from "$lib/components/ui/card";
   import * as DropdownMenu from "$lib/components/ui/dropdown-menu";
+  import { Input } from "$lib/components/ui/input/index.js";
   export let data;
+
+  let employeeData = data.employeeData;
+
+  let searchText = "";
+  const skills = data.skills.map((skill) => {
+    return { name: skill, checked: false };
+  });
+
+  $: employeeData = data.employeeData.filter((employee) =>
+    employee.name.toLowerCase().includes(searchText)
+  );
+
+  function filterBySkills(currentSkill: string) {
+    employeeData = data.employeeData.filter((employee) => {
+      let qualified = true;
+      skills.forEach((skill) => {
+        if (
+          (skill.checked || skill.name === currentSkill) &&
+          !employee.skills.includes(skill.name)
+        ) {
+          qualified = false;
+        }
+      });
+      return qualified;
+    });
+  }
 </script>
 
 <h2
@@ -12,8 +39,31 @@
   Hiring employees
 </h2>
 
+<div class="flex gap-2">
+  <Input
+    class="mb-4"
+    placeholder="Search for employee"
+    bind:value={searchText}
+  />
+  <DropdownMenu.Root>
+    <DropdownMenu.Trigger asChild let:builder>
+      <Button variant="outline" builders={[builder]}>Select skills</Button>
+    </DropdownMenu.Trigger>
+    <DropdownMenu.Content class="w-56" align="end">
+      {#each skills as skill}
+        <DropdownMenu.CheckboxItem
+          bind:checked={skill.checked}
+          on:click={() => filterBySkills(skill.name)}
+        >
+          {skill.name}
+        </DropdownMenu.CheckboxItem>
+      {/each}
+    </DropdownMenu.Content>
+  </DropdownMenu.Root>
+</div>
+
 <div class="grid grid-cols-2 gap-4">
-  {#each data.employeeData as item}
+  {#each employeeData as item}
     <Card.Root class="shadow-md">
       <div class="grid grid-cols-3">
         <div class="border flex flex-col">

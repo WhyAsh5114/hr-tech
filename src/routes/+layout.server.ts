@@ -97,5 +97,5 @@ export const load = async () => {
     })
   );
 
-  return { employeeData };
+  return { employeeData, skills };
 };
