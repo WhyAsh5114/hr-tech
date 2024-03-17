@@ -80,13 +80,18 @@
 
   let cost = [];
 
-  cost.push(data.employee?.budget.CTC);
+  cost.push(data.employee?.budget.inHand);
   cost.push(data.employee?.budget.taxes);
   cost.push(data.employee?.budget.trainingCost);
   cost.push(data.employee?.budget.additionalCertificationCost);
 
   const pieData = {
-    labels: ["CTC", "Taxes", "Training Cost", "Additional Certification Cost"],
+    labels: [
+      "In-Hand",
+      "Taxes",
+      "Training Cost",
+      "Additional Certification Cost",
+    ],
     datasets: [
       {
         data: cost,
@@ -143,13 +148,13 @@
     </CardHeader>
   </Card>
 </div>
-<div class="flex gap-2 justify-evenly items-center">
-  <div class="grid grid-cols-2 w-2/3">
+<div class="flex justify-evenly gap-8">
+  <Card class="grid grid-cols-2 w-2/3 p-6 grow">
     <Line
       data={chartData}
-      options={{ scales: { x: { grid: { display: false } } } }}
+      options={{ scales: { x: { grid: { display: true } } } }}
     />
-  </div>
+  </Card>
   <div class="grid grid-cols-2 gap-2">
     <Card class="w-48 h-48 shadow-md">
       <CardHeader>
@@ -197,7 +202,9 @@
       </CardHeader>
       <CardContent>
         <p class="text-4xl font-bold">
-          {calculateAttritionPercentage(data.timesTakenToCloseIssue).toFixed(2)}%
+          {calculateAttritionPercentage(data.timesTakenToCloseIssue).toFixed(
+            2
+          )}%
         </p>
       </CardContent>
     </Card>
@@ -234,7 +241,7 @@
 
 <div class="flex justify-between gap-10">
   <div class="flex flex-col basis-2/3 gap-2">
-    <Card class="text-2xl grow">
+    <Card class="text-2xl grow shadow-lg">
       <CardContent>
         <p class="m-4">
           <span class="font-bold">CTC:</span>
@@ -252,19 +259,42 @@
           <span class="font-bold">Additional Cerfication Cost:</span>
           {data.employee?.budget.additionalCertificationCost}
         </p>
+        <p class="m-4">
+          <span class="font-bold">In-Hand Salary: </span>
+          {data.employee?.budget.inHand}
+        </p>
+        <p class="m-4">
+          <span class="font-bold">Total Expense:</span>
+          {data.employee?.budget.CTC - data.employee?.budget.inHand}
+        </p>
       </CardContent>
     </Card>
-    <Card class="text-2xl">
-      <CardContent>
-        <p class="m-4">
-          <span class="font-bold">CTC:</span>
-          {data.employee?.budget.CTC}
-        </p>
+    <Card class="text-2xl shadow-xl">
+      <CardContent class="p-0">
+        {#if calculateAttritionPercentage(data.timesTakenToCloseIssue) < 25}
+          <p
+            class="text-xl text-center font-bold py-2 ring ring-green-400 rounded-sm"
+          >
+            This employee can expect a hike
+          </p>
+        {:else if calculateAttritionPercentage(data.timesTakenToCloseIssue) < 75}
+          <p
+            class="text-xl text-center font-bold py-2 ring ring-blue-400 rounded-sm"
+          >
+            This employee has an appropriate performance
+          </p>
+        {:else}
+          <p
+            class="text-xl text-center font-bold py-2 ring ring-red-400 rounded-sm"
+          >
+            This employee has not been performing well
+          </p>
+        {/if}
       </CardContent>
     </Card>
   </div>
   <div class="w-96">
-    <Card>
+    <Card class="shadow-lg p-6">
       <Pie data={pieData} />
     </Card>
   </div>
