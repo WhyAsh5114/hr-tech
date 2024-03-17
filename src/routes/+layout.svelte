@@ -23,19 +23,8 @@
   </Menubar.Menu>
   <Menubar.Menu>
     <Menubar.Trigger class="grow justify-center">
-      Expense management
-    </Menubar.Trigger>
-    <Menubar.Content>
-      <Menubar.Item>For individual employee</Menubar.Item>
-      <Menubar.Item>For department</Menubar.Item>
-    </Menubar.Content>
-  </Menubar.Menu>
-  <Menubar.Menu>
-    <Menubar.Trigger class="grow justify-center">Account</Menubar.Trigger>
-    <Menubar.Content>
       <Menubar.Item on:click={toggleMode}>Change theme</Menubar.Item>
-      <Menubar.Item class="text-red-500">Logout</Menubar.Item>
-    </Menubar.Content>
+    </Menubar.Trigger>
   </Menubar.Menu>
 </Menubar.Root>
 <slot />

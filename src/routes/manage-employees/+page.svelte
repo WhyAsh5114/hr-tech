@@ -37,6 +37,18 @@
       return Number(a.name) - Number(b.name);
     }
   });
+
+  function getInitials(name: string): string {
+    const words = name.split(" ");
+    let initials = "";
+    for (const word of words) {
+      if (word.length > 0) {
+        initials += word[0].toUpperCase();
+      }
+    }
+
+    return initials;
+  }
 </script>
 
 <div class="flex gap-2">
@@ -68,8 +80,7 @@
         class="flex items-center justify-start px-6  hover:shadow-md transition-all"
       >
         <Avatar class="h-16 w-16">
-          <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
-          <AvatarFallback>CN</AvatarFallback>
+          <AvatarFallback>{getInitials(employee.name)}</AvatarFallback>
         </Avatar>
         <CardHeader class="flex-col">
           <CardTitle>{employee.name}</CardTitle>
