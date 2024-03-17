@@ -5,7 +5,13 @@ export const employeeData = [
     designation: "Senior Software Developer",
     email: "yashkolekar1234@gmail.com",
     issuesClosed: 5,
-    commits: 15
+    commits: 15,
+    budget: {
+      CTC: 250000,
+      taxes: 20000,
+      trainingCost: 20000,
+      additionalCertificationCost: 10000,
+    },
   },
   {
     name: "Albert King",
@@ -13,7 +19,13 @@ export const employeeData = [
     designation: "Cloud Architect",
     email: "anonjr192@gmail.com",
     issuesClosed: 5,
-    commits: 25
+    commits: 25,
+    budget: {
+      CTC: "250000",
+      taxes: "25000",
+      trainingCost: "25000",
+      additionalCertificationCost: "15000",
+    },
   },
   {
     name: "Jessica Jones",
@@ -21,7 +33,13 @@ export const employeeData = [
     designation: "System Administrator",
     email: "anonjr511@gmail.com",
     issuesClosed: 7,
-    commits: 22
+    commits: 22,
+    budget: {
+      CTC: 180000,
+      taxes: 18000,
+      trainingCost: 15000,
+      additionalCertificationCost: 8000,
+    },
   },
   {
     name: "Jashan Elizabeth",
@@ -29,7 +47,13 @@ export const employeeData = [
     designation: "Junior Developer",
     email: "myfit.auth@gmail.com",
     issuesClosed: 2,
-    commits: 12
+    commits: 12,
+    budget: {
+      CTC: 120000,
+      taxes: 12000,
+      trainingCost: 10000,
+      additionalCertificationCost: 5000,
+    },
   },
   {
     name: "Shayla Nico",
@@ -37,7 +61,13 @@ export const employeeData = [
     designation: "Senior Software Developer",
     email: "whyashplaysdota@gmail.com",
     issuesClosed: 3,
-    commits: 52
+    commits: 52,
+    budget: {
+      CTC: 220000,
+      taxes: 22000,
+      trainingCost: 20000,
+      additionalCertificationCost: 12000,
+    },
   },
   {
     name: "Ray Liotta",
@@ -45,6 +75,12 @@ export const employeeData = [
     designation: "Database Administrator",
     email: "krishnsundaram@gmail.com",
     issuesClosed: 9,
-    commits: 18
+    commits: 18,
+    budget: {
+      CTC: 160000,
+      taxes: 16000,
+      trainingCost: 15000,
+      additionalCertificationCost: 7000,
+    },
   },
 ];
