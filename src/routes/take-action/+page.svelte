@@ -105,7 +105,11 @@
 </div>
 
 <span class="text-sm font-semibold ml-2">Email</span>
-<Textarea placeholder="Write your email here" class="h-96" bind:value={answer} />
+<Textarea
+  placeholder="Write your email here"
+  class="h-96"
+  bind:value={answer}
+/>
 
 <div class="flex mt-2 justify-between">
   <Button variant="secondary" disabled={generating} on:click={generateResponse}>
@@ -114,5 +118,8 @@
     {/if}
     Generate email
   </Button>
-  <Button>Send email</Button>
+  <Button
+    ><a href="mailto:{selectedEmployee?.value}&body={answer}">Send email</a
+    ></Button
+  >
 </div>

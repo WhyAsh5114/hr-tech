@@ -86,6 +86,9 @@
       >
         <Avatar class="h-16 w-16">
           <AvatarFallback>{getInitials(employee.name)}</AvatarFallback>
+          <AvatarImage
+            src="https://avatars.githubusercontent.com/{employee.username}"
+          ></AvatarImage>
         </Avatar>
         <CardHeader class="flex-col">
           <CardTitle>{employee.name}</CardTitle>
