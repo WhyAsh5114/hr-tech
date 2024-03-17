@@ -31,6 +31,10 @@
       return qualified;
     });
   }
+
+  $: employeeData = data.employeeData.filter((employee) =>
+    employee.name.toLowerCase().includes(searchText)
+  );
 </script>
 
 <h2
