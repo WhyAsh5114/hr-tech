@@ -76,6 +76,21 @@
       },
     ],
   };
+
+  function calculateAttritionPercentage(timesTaken: number[]) {
+    let totalIssues = 0;
+    let issuesClosedBeyondThreshold = 0;
+    timesTaken.forEach((timeTaken) => {
+      totalIssues++;
+      if (timeTaken > 12) {
+        issuesClosedBeyondThreshold++;
+      }
+    });
+
+    const attritionPercentage =
+      (issuesClosedBeyondThreshold / totalIssues) * 100;
+    return attritionPercentage;
+  }
 </script>
 
 <div>
@@ -145,10 +160,12 @@
     </Card>
     <Card class="w-48 h-48 shadow-md">
       <CardHeader>
-        <CardTitle>Take action</CardTitle>
+        <CardTitle>Attrition percentage</CardTitle>
       </CardHeader>
       <CardContent>
-        <p>Card Content</p>
+        <p class="text-4xl font-bold">
+          {calculateAttritionPercentage(data.timesTakenToCloseIssue).toFixed(2)}%
+        </p>
       </CardContent>
     </Card>
     <DropdownMenu>

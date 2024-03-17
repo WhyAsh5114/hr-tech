@@ -29,7 +29,6 @@
   );
 
   $: employeeData = employeeData.sort((b, a) => {
-    console.log(selectedSorter?.value);
     if (selectedSorter?.value === "issues closed") {
       return a.issuesClosed - b.issuesClosed;
     } else if (selectedSorter?.value === "commits") {
