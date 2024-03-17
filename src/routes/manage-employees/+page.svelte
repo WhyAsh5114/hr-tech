@@ -51,6 +51,11 @@
   }
 </script>
 
+<h2
+  class="scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight transition-colors first:mt-0 mb-6"
+>
+  Manage employees
+</h2>
 <div class="flex gap-2">
   <Input
     class="mb-4"
